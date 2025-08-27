@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
+}
+
+model User {
+  id          String       @id @default(cuid())
+  email       String       @unique
+  password    String
+  name        String?
+  role        Role         @default(USER)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @default(now()) @updatedAt
+  jobs        Job[]        @relation("PostedJobs")
+  candidates  Candidate[]
+  profile     Profile?
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Job {
+  id          String       @id @default(cuid())
+  title       String
+  description String
+  postedAt    DateTime     @default(now())
+  status      JobStatus    @default(ACTIVE)
+  postedById  String
+  postedBy    User         @relation("PostedJobs", fields: [postedById], references: [id])
+  candidates  Candidate[]
+  companyId   String?
+  company     Company?     @relation(fields: [companyId], references: [id])
+}
+
+enum JobStatus {
+  ACTIVE
+  CLOSED
+  DRAFT
+}
+
+model Candidate {
+  id          String            @id @default(cuid())
+  appliedAt   DateTime          @default(now())
+  resumeUrl   String?
+  jobId       String
+  job         Job               @relation(fields: [jobId], references: [id])
+  userId      String
+  user        User              @relation(fields: [userId], references: [id])
+  status      ApplicationStatus @default(PENDING)
+
+  @@unique([userId, jobId]) // Prevents duplicate applications
+}
+
+enum ApplicationStatus {
+  PENDING
+  SHORTLISTED
+  REJECTED
+  HIRED
+}
+
+model Profile {
+  id        String   @id @default(cuid())
+  bio       String?
+  phone     String?
+  location  String?
+  skills    String[] // store skills as array
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Company {
+  id        String   @id @default(cuid())
+  name      String
+  website   String?
+  createdAt DateTime @default(now())
+  jobs      Job[]
+}
