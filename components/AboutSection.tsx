@@ -10,7 +10,7 @@ export default function AboutSection() {
       className="relative bg-transparent py-20 px-4 md:px-12"
     >
       <div className="container mx-auto flex flex-col md:flex-row items-center gap-12">
-        {/* Image / Illustration */}
+       
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -26,7 +26,7 @@ export default function AboutSection() {
           />
         </motion.div>
 
-        {/* Text Content */}
+
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -38,7 +38,7 @@ export default function AboutSection() {
           </h2>
           <p className="text-gray-700 dark:text-gray-300 text-lg md:text-xl leading-relaxed">
             HIREWISE is your ultimate platform for connecting top talent with the right
-            opportunities. We leverage intelligent algorithms and a user-friendly
+            opportunities. We leverage intelligent algorithms and a user friendly
             interface to ensure that companies find qualified professionals quickly,
             and job seekers discover their dream roles effortlessly.
           </p>
