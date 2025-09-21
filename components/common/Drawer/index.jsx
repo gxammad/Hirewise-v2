@@ -199,7 +199,7 @@ function Drawer({ drawer, action, single_page, single_page_menu, home_nine,home_
                       <span className="menu-expand">
                         <i className="fa fa-angle-down"></i>
                       </span>
-                      <a href="#">Portfolio</a>
+                      <a href="#">portfolio</a>
                       <ul
                         className="sub-menu"
                         style={{
