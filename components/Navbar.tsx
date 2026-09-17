@@ -98,10 +98,10 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-6" data-aos="fade-down">
             {[
               { label: "Home", href: "/" },
-              { label: "About", href: "#about" },
-              { label: "Contact", href: "contact" },
-              { label: "Login", href: "login" },
-              { label: "Signup", href: "signup" },
+              { label: "About", href: "/#about" },
+              { label: "Contact", href: "/contact" },
+              { label: "Login", href: "/login" },
+              { label: "Signup", href: "/signup" },
             ].map((item) => (
                 <Link
                   key={item.label}

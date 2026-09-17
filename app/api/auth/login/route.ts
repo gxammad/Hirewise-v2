@@ -4,18 +4,43 @@ import bcrypt from "bcrypt";
 import { createSession } from "@/lib/auth";
 
 export async function POST(req: Request) {
-  const { email, password } = await req.json();
+  try {
+    const { email, password } = await req.json();
 
-  const user = await prisma.user.findUnique({ where: { email } });
-  if (!user) return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+    if (!email || !password) {
+      return NextResponse.json(
+        { message: "Email and password are required", error: "Missing credentials" },
+        { status: 400 }
+      );
+    }
 
-  const isValid = await bcrypt.compare(password, user.password);
-  if (!isValid) return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+    const user = await prisma.user.findUnique({ where: { email } });
+    if (!user) {
+      return NextResponse.json(
+        { message: "Invalid credentials", error: "Invalid credentials" },
+        { status: 401 }
+      );
+    }
 
-  // create session cookie
-  await createSession({ id: user.id, role: user.role });
+    const isValid = await bcrypt.compare(password, user.password);
+    if (!isValid) {
+      return NextResponse.json(
+        { message: "Invalid credentials", error: "Invalid credentials" },
+        { status: 401 }
+      );
+    }
 
-  return NextResponse.json({
-    redirect: user.role === "ADMIN" ? "/admin/home" : "/user/home",
-  });
+    // create session cookie
+    await createSession({ id: user.id, role: user.role });
+
+    return NextResponse.json({
+      redirect: user.role === "ADMIN" ? "/admin/home" : "/user/home",
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+    return NextResponse.json(
+      { message: "An error occurred during sign in", error: "Server error" },
+      { status: 500 }
+    );
+  }
 }

@@ -35,7 +35,7 @@ const jobs = [
     lookingFor:
       "Problem solver with solid programming experience in Go/Java/Python, strong understanding of cloud platforms, and a mindset for innovation.",
     eligibility: "Bachelor’s in Computer Science or related field. Master’s preferred.",
-    link: "login",
+    link: "/login",
   },
   {
     id: 2,
@@ -58,7 +58,7 @@ const jobs = [
       "Strong Python skills, familiarity with ML frameworks (PyTorch/TensorFlow), and a strong mathematical foundation in probability and statistics.",
     eligibility:
       "Currently enrolled in Computer Science, AI, or Data Science program. Prior research experience is a plus.",
-    link: "login",
+    link: "/login",
   },
   {
     id: 3,
@@ -80,7 +80,7 @@ const jobs = [
     lookingFor:
       "Strong portfolio showcasing design systems, proficiency in Figma/Sketch, and ability to communicate design decisions effectively.",
     eligibility: "Bachelor’s in Design, HCI, or related field. Strong portfolio required.",
-    link: "login",
+    link: "/login",
   },
   {
     id: 4,
@@ -102,7 +102,7 @@ const jobs = [
     lookingFor:
       "Proficiency in Python, SQL, and ML tools. Strong statistical knowledge and a passion for sustainability and clean energy.",
     eligibility: "Pursuing or completed degree in Data Science, Statistics, or Engineering.",
-    link: "login",
+    link: "/login",
   },
   {
     id: 5,
@@ -124,11 +124,11 @@ const jobs = [
     lookingFor:
       "Strong product sense, data-driven decision-making, and experience in leading multi-disciplinary teams.",
     eligibility: "Bachelor’s in Business, Computer Science, or equivalent experience.",
-    link: "login",
+    link: "/login",
   },
   {
     id: 6,
-    logo: "/logos/X.png",
+    logo: "/logos/x.png",
     company: "X (Twitter)",
     posted: "4 days ago",
     title: "Frontend Developer",
@@ -146,7 +146,7 @@ const jobs = [
     lookingFor:
       "Experience with React, TypeScript, REST/GraphQL APIs, and performance optimization.",
     eligibility: "Bachelor’s in Computer Science or equivalent experience.",
-    link: "login",
+    link: "/login",
   },
   {
     id: 7,
@@ -168,7 +168,7 @@ const jobs = [
     lookingFor:
       "Strong analytical skills, SQL/Python knowledge, and prior experience in risk analysis or fintech.",
     eligibility: "Bachelor’s in Finance, Economics, or related field.",
-    link: "login",
+    link: "/login",
   },
   {
     id: 8,
@@ -190,7 +190,7 @@ const jobs = [
     lookingFor:
       "Experience with AWS, Docker/Kubernetes, CI/CD pipelines, and infrastructure automation.",
     eligibility: "Bachelor’s in Computer Science, Engineering, or equivalent experience.",
-    link: "login",
+    link: "/login",
   },
   {
     id: 9,
@@ -212,7 +212,7 @@ const jobs = [
     lookingFor:
       "Strong background in cloud infrastructure, monitoring, Kubernetes, and security best practices.",
     eligibility: "Bachelor’s in Computer Science, Engineering, or equivalent experience.",
-    link: "login",
+    link: "/login",
   },
   {
     id: 10,
@@ -234,7 +234,7 @@ const jobs = [
     lookingFor:
       "Experience in recruitment, employee engagement programs, and HRIS tools.",
     eligibility: "Bachelor’s degree in HR, Business Administration, or related field.",
-    link: "login",
+    link: "/login",
   },
   {
     id: 11,
@@ -256,7 +256,7 @@ const jobs = [
     lookingFor:
       "Proficiency in JavaScript/TypeScript, React, Next.js, and strong attention to detail in UI development.",
     eligibility: "Bachelor’s in Computer Science or equivalent experience.",
-    link: "login",
+    link: "/login",
   },
 ];
 

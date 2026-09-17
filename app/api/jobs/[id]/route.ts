@@ -2,12 +2,13 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-type Params = { params: { id: string } };
+type Params = { params: Promise<{ id: string }> };
 
 export async function GET(_: Request, { params }: Params) {
   try {
+    const { id } = await params;
     const job = await prisma.job.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: { company: true, postedBy: true, candidates: true },
     });
 
@@ -22,9 +23,10 @@ export async function GET(_: Request, { params }: Params) {
 
 export async function PUT(req: Request, { params }: Params) {
   try {
+    const { id } = await params;
     const body = await req.json();
     const job = await prisma.job.update({
-      where: { id: params.id },
+      where: { id },
       data: body,
     });
     return NextResponse.json(job);
@@ -36,7 +38,8 @@ export async function PUT(req: Request, { params }: Params) {
 
 export async function DELETE(_: Request, { params }: Params) {
   try {
-    await prisma.job.delete({ where: { id: params.id } });
+    const { id } = await params;
+    await prisma.job.delete({ where: { id } });
     return NextResponse.json({ message: "Job deleted" });
   } catch (error) {
     console.error(error);

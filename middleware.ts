@@ -1,9 +1,17 @@
-import { getSession } from "@/lib/auth";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export async function middleware(req: NextRequest) {
-  const session = await getSession();
+export function middleware(req: NextRequest) {
+  const sessionCookie = req.cookies.get("session")?.value;
+  let session: { id: string; role: string } | null = null;
+
+  if (sessionCookie) {
+    try {
+      session = JSON.parse(sessionCookie);
+    } catch {
+      session = null;
+    }
+  }
 
   const { pathname } = req.nextUrl;
 
@@ -21,7 +29,7 @@ export async function middleware(req: NextRequest) {
   // Protect admin pages
   if (pathname.startsWith("/admin")) {
     if (!session || session.role !== "ADMIN") {
-      return NextResponse.redirect(new URL("/unauthorized", req.url));
+      return NextResponse.redirect(new URL("/login", req.url));
     }
     return NextResponse.next();
   }
@@ -29,7 +37,7 @@ export async function middleware(req: NextRequest) {
   // Protect user pages
   if (pathname.startsWith("/user")) {
     if (!session || session.role !== "USER") {
-      return NextResponse.redirect(new URL("/unauthorized", req.url));
+      return NextResponse.redirect(new URL("/login", req.url));
     }
     return NextResponse.next();
   }

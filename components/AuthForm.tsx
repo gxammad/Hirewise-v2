@@ -108,7 +108,9 @@ export default function AuthForm({ type, bgImage }: AuthFormProps) {
         try {
           const body = await res.json();
           if (body?.message) errMsg = body.message;
-          if (errMsg.includes("invalid credentials") || errMsg.includes("wrong password")) {
+          else if (body?.error) errMsg = body.error;
+          const lower = errMsg.toLowerCase();
+          if (lower.includes("invalid") || lower.includes("wrong") || lower.includes("credential")) {
             setShake(true); // Trigger shake animation for invalid credentials or wrong password
             setTimeout(() => setShake(false), 500); // Reset shake after 500ms
           }

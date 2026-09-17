@@ -3,7 +3,7 @@ import BackToTop from "@/lib/back-to-top";
 import React, { useEffect } from "react";
 import { ArrowUp } from "lucide-react"; // Lucide icon
 
-function BackToTopCom({ className }) {
+function BackToTopCom({ className = "" }) {
   useEffect(() => {
     BackToTop(".scroll-top");
   }, []);
