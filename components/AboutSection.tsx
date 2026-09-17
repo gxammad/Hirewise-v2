@@ -51,7 +51,7 @@ export default function AboutSection() {
 
           <div className="mt-4 flex gap-4">
             <a
-              href="contact"
+              href="/contact"
               className="bg-gradient-to-r from-blue-500 to-purple-500  text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all duration-300"
             >
               Get in Touch
